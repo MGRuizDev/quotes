@@ -1,0 +1,140 @@
+
+*{
+  /*font-family: 'Montserrat', sans-serif;
+  font-family: 'Vollkorn', serif;
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Lobster', cursive;*/
+  font-family: 'Bitter', serif;
+}
+body{
+  margin: 0;
+  padding: 0;
+}
+img{
+  max-width: 100%;
+}
+
+#blog-title {
+  margin-bottom: 50px;
+}
+#side-menu {
+  background-color: #3a85ff;
+  width: 20%;
+  height: auto;
+  border-radius: 5px;
+  position: fixed;
+  padding: 30px;
+  font-size: 16px;
+  font-family: sans-serif;
+}
+#side-menu img{
+  padding: 10px;
+}
+#side-menu p{
+  padding: 10px;
+  color: white;
+}
+#side-menu ul{
+  padding: 10px;
+  color: white;
+  list-style: none;
+}
+#side-menu ul li{
+  margin-bottom: 10px;
+}
+#side-menu ul li a{
+  text-decoration: none;
+  color: white;
+  opacity: 0.5;
+}
+#side-menu ul li a:hover{
+  color: white;
+  opacity: 1.0;
+}
+#side-menu hr{
+  background: blue;
+}
+
+#content{
+  font-size: 16pt;
+  line-height: 35pt;
+  font-family: 'Vollkorn', serif;
+  font-weight: lighter;
+}
+
+footer{
+  margin-top: 250px;
+  padding: 15px;
+}
+
+/*---------- Media Queries--------------*/
+
+/* Chromebook pixel */
+@media (max-width:1280px)  {
+  #side-menu{
+    width: 25%;
+  }
+
+}
+
+/* !PAD pro */
+@media (max-width:1024px)  {
+  #side-menu{
+    width: 25%;
+    padding: 10px;
+  }
+
+}
+
+/* Samsung Galaxy Tab 10 */
+@media (max-width:800px)  {
+}
+
+/* !PAD's Nexus-9 */
+@media (max-width:768px)  {
+  #side-menu{
+    background-color: #3a85ff;
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    position: static;
+    padding: 30px;
+    font-size: 16px;
+    font-family: sans-serif;
+  }
+}
+
+/* Nexus 7 */
+@media (max-width:600px)  {
+
+}
+
+/* Samsung Galaxy Note 5 */
+@media (max-width:480px)  {
+
+}
+
+/* !Phone 6-7-8 Plus */
+@media (max-width:414px)  {
+
+}
+
+/* Nexus-6 & 5X  Google Pixel */
+@media (max-width:411px)  {
+
+}
+
+/* !Phone 5-8-X */
+@media (max-width:375px)  {
+
+}
+
+/* Samsung Galaxy S7 */
+@media (max-width:360px)  {
+
+}
+
+/* !Phone Touch & 5 */
+@media (max-width:320px)  {
+
+}
