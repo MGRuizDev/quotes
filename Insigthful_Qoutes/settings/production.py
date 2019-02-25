@@ -25,7 +25,7 @@ SECRET_KEY = 'n@n!*_08e8-0&hwtkzg+^07rq=4%wh21%hvqn-c+=d=1h_@!ey'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mgruizdev-blog.herokuapp.com', 'localhost']
 
 # Deploy in production
 CORS_REPLACE_HTTPS_REFERER      = True
