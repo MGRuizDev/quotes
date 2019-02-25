@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <div class="col-sm-8 col-sm-offset-4">
+    <h1 id="blog-title">Web Development</h1>
+    {% for post in object %}
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="thumbnail">
+          {% if post.image %} <!--This is to avoid value error if a post does not have a image-->
+          <img src="{{ post.image.url }}" class="img-responsive" />
+          {% endif %}
+          <div class="caption">
+            {% if post.draft %}<h3>DRAFT</h3>{% endif %}{% if post.publish > today %}<h3>Future Post<h3>{% endif %}
+            <h3><a href="{{ post.get_absolute_url }}">{{post.title}}</a> <small>{{post.timestamp|timesince}}</small></h3>
+            <p>Author: {{ post.user.get_full_name}}</p>
+            <div class="post-detail-item"><p>{{post.get_markdown_django|truncatechars:50 }}</p></div><!--Remove content and class content-markdown, and add get_markdown_django to use the deux library. |I had to remove |linebreaks|truncatechars:120 for markdown to work and show image and content stylished-->
+            <p><a href="{{ post.get_absolute_url }}" class="btn btn-primary" role="button">View</a></p>
+          </div>
+        </div>
+      </div>
+      {% cycle "" "</div><div class='row'>" %}
+      </div>
+      <br>
+      {% endfor %}
+
+      <div class="pagination">
+        <span class="step-links">
+            {% if object.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ object.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ object.number }} of {{ object.paginator.num_pages }}.
+            </span>
+
+            {% if object.has_next %}
+                <a href="?page={{ object.next_page_number }}">next</a>
+                <a href="?page={{ object.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+      </div>
+    </div>
+
+<!--    {% for post in object %}
+      <ul>
+        <li><a href="{{ post.get_absolute_url }}">{{post.title}}</a></li>
+        <li>{{post.content}}</li>
+        <li>{{post.timestamp}}</li>
+        <li>{{post.updated}}</li>
+        <li>{{post.id}}</li>
+      </ul>
+      <br>
+      <br>
+    {% endfor %}-->
+{% endblock %}

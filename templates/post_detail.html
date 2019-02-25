@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+
+{% block content %}
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-4">
+        <h1>{{ title }}  {% if instance.draft %}<span style="color:red">DRAFT</span>{% endif %} <small>{{instance.publish}}</small></h1>
+        {% if instance.image %} <!--This is to avoid value error if a post does not have a image-->
+        <img src="{{ instance.image.url }}" class="img-responsive" />
+        {% endif %}
+        <p>Author: {{ instance.user.get_full_name }}</p>
+        <div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+        <p><a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
+          Facebook |
+        </a>
+        <a href="https://twitter.com/home?status={{ shared_string }}%20{{ request.build_absolute_uri }}">
+          Twitter |
+        </a>
+        <a href='https://plus.google.com/share?url={{ request.build_absolute_uri }}'>Google+ | </a>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ request.build_absolute_uri }}&title={{ shared_string }}&summary={{ shared_string }}&source={{ request.build_absolute_uri }}">
+          Linkedin |
+        </a>
+        <a href="http://www.reddit.com/submit?url={{ request.build_absolute_uri }}&title={{ shared_string }}">Reddit  </a>
+      </p>
+        <div class="post-detail-item" id="content"><p>{{ instance.get_markdown_django }}</p></div><!--Remove content and class content-markdown, and add get_markdown_django to use the deux library. |Use |safe|escape  to allow html markup use to write content.|Class content-markdown will allow us to style the content. |We need to remove linebreaks-->
+        <!--<div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>-->
+      </div>
+    </div>
+{% endblock %}

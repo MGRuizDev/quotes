@@ -1,0 +1,73 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+     <!--Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <link href="https://fonts.googleapis.com/css?family=Bitter|Lobster|Montserrat|Roboto|Vollkorn" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'quoting/static/css/base.css' %}"></link>
+    {{ form.media }}
+
+  </head>
+  <body>
+    <div id="fb-root"></div>
+      <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1';
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+    <div>
+      {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+    <div class="container">
+      <div class="col-lg-4" id="side-menu">
+        <img src="{% static 'quoting/static/img/logox.png' %}"></img>
+        <p>Learning and building new things is my passion, but what I most enjoy is solving problems.</p>
+        <hr></hr>
+        <ul>
+          <li><a href="http://mgruizdev.com/">PORTFOLIO</a></li>
+          <li><a href="http://mgruizdev.com/#about">ABOUT</a></li>
+          <li><a href="http://mgruizdev.com/#contact">CONTACT</a></li>
+        </ul>
+      </div>
+      {% block content %}
+
+      {% endblock %}
+    </div>
+    <footer><p id="copyright" align="center" >Copyright &copy; 2019 | Miguel Gomez</p></footer>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script> <!--Markdown to style text in content posts-->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.5.2/marked.min.js"></script><!--Markdown to style text in content posts. It grabs the library and through  jquery allows to use the function to render the functionality-->
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $(".content-markdown").each(function(){
+          var content = $(this).text();
+          var markedContent = marked(content);
+          $(this).html(markedContent);
+        })
+        $(".post-detail-item img").each(function(){ //When using django-markdown-deux we remuve .content-markdown and add a new class to reference the images.
+          $(this).addClass("img-responsive");
+        })
+      })
+    </script>
+  </body>
+</html>
