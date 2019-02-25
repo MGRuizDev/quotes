@@ -1,1 +1,1 @@
-web: gunicorn Insigthful_Quotes.wsgi
+web: gunicorn Insigthful_Qoutes.wsgi
